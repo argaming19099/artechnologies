@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARTechnologies | Software & Systems</title>
     <style>
+        /* THE FIX: Forces padding/borders to stay inside the width */
+        * {
+            box-sizing: border-box;
+        }
+
         :root {
             --bg: #0f1114;
             --card: #1a1d22;
@@ -19,21 +24,25 @@
             color: var(--text);
             line-height: 1.6;
             margin: 0;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            /* Extra safety against horizontal overflow */
+            overflow-x: hidden; 
+            width: 100%;
         }
 
         header {
             width: 100%;
-            padding: 4rem 0;
+            padding: 4rem 1rem;
             text-align: center;
             background: linear-gradient(180deg, rgba(114,137,218,0.1) 0%, rgba(15,17,20,0) 100%);
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 8vw, 3.5rem); /* Scales fluidly with screen size */
             margin: 0;
             letter-spacing: -1px;
         }
@@ -43,12 +52,14 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         main {
-            max-width: 800px;
-            width: 90%;
+            max-width: 850px;
+            width: 100%; /* Uses available space up to max-width */
+            padding: 0 20px; /* Internal gutter so text doesn't touch screen edges */
             margin-bottom: 4rem;
         }
 
@@ -58,13 +69,19 @@
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.05);
             margin-top: 2rem;
+            width: 100%; /* Stays within main's padding */
         }
 
-        h2 { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-top: 0; }
+        h2 { 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+            padding-bottom: 10px; 
+            margin-top: 0; 
+            font-size: 1.5rem;
+        }
 
         .project-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
@@ -76,11 +93,11 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .project-card h3 { margin-top: 0; color: var(--accent); }
+        .project-card h3 { margin-top: 0; color: var(--accent); font-size: 1.2rem; }
 
         footer {
             margin-top: auto;
-            padding: 2rem;
+            padding: 3rem 1rem;
             width: 100%;
             text-align: center;
             font-size: 0.85rem;
@@ -88,46 +105,47 @@
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        a { color: var(--accent); text-decoration: none; }
+        .footer-links { margin-bottom: 1rem; }
+        
+        a { color: var(--accent); text-decoration: none; margin: 0 10px; }
         a:hover { text-decoration: underline; }
 
-        @media (max-width: 600px) {
-            .project-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="tagline">Next-Gen Systems</div>
+        <div class="tagline">Engineered Systems & Software</div>
         <h1>ARTechnologies</h1>
     </header>
 
     <main>
         <section class="section">
-            <h2>About</h2>
-            <p>Specializing in custom software architecture, legacy system modernization, and hardware-software integration. ARTechnologies focuses on building high-performance, low-footprint solutions for complex environments.</p>
+            <h2>Core Competency</h2>
+            <p>ARTechnologies is a specialized development house focused on high-performance C# applications, legacy system modernization, and hardware-level optimizations. From .NET 1.1 to modern stacks, we bridge the gap between legacy reliability and modern capability.</p>
         </section>
 
         <section class="section">
-            <h2>Active Projects</h2>
+            <h2>Primary Software</h2>
             <div class="project-grid">
                 <div class="project-card">
                     <h3>AR Messenger</h3>
-                    <p>A lightweight, secure Google OAuth client for high-efficiency messaging on desktop systems.</p>
+                    <p>A high-speed desktop client for Google services. Optimized for .NET 4.7.1 with a clean, low-latency interface.</p>
                 </div>
                 <div class="project-card">
-                    <h3>Legacy Core</h3>
-                    <p>Modernizing legacy .NET infrastructures to sustain enterprise-grade functionality on modern hardware.</p>
+                    <h3>Legacy Bridge</h3>
+                    <p>Proprietary workflows for migrating 2000s-era codebases into modern repository structures without data loss.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        &copy; 2026 ARTechnologies. All rights reserved.<br>
-        <a href="index.html">Privacy Policy</a> | <a href="tos.html">Terms of Service</a>
+        <div class="footer-links">
+            <a href="index.html">Privacy Policy</a>
+            <a href="tos.html">Terms of Service</a>
+        </div>
+        &copy; 2026 ARTechnologies. No tracking. No fluff.
     </footer>
 
 </body>
