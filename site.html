@@ -110,7 +110,42 @@
         a { color: var(--accent); text-decoration: none; margin: 0 10px; }
         a:hover { text-decoration: underline; }
 
-    </style>
+   <style>
+    .privacy-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(114, 137, 218, 0.15);
+        color: var(--accent);
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: 1px solid var(--accent);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+        z-index: 1000; /* Keeps it above all other elements */
+    }
+
+    .privacy-btn:hover {
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+
+    /* Hide the button on very small screens to avoid overlap with the title */
+    @media (max-width: 480px) {
+        .privacy-btn {
+            position: static;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<a href="https://argaming19099.github.io/policy/index.html" class="privacy-btn">Privacy Policy</a>
 </head>
 <body>
 
